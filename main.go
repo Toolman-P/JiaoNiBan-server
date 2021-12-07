@@ -7,15 +7,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// func test() {
-// 	databases.Init()
-// 	defer databases.Close()
-// 	fmt.Println(databases.GetLatest())
-// }
-
 func main() {
 	databases.Init()
 	defer databases.Close()
+	gin.SetMode(gin.DebugMode)
 	r := gin.Default()
 
 	r.GET("/latest", middlewares.Latest)
@@ -33,5 +28,4 @@ func main() {
 	}
 
 	r.Run()
-
 }
