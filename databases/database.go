@@ -10,6 +10,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+var mdb *mongo.Client
+var rdb *redis.Client
+
 func Init() error {
 	var err error
 	mdb, err = mongo.Connect(context.TODO(), options.Client().ApplyURI(mongo_addr))
