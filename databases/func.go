@@ -32,10 +32,18 @@ func Init() error {
 	return nil
 }
 
-func Close() error {
-	mdb.Disconnect(context.TODO())
-	rdb.Close()
-	return nil
+func Close() {
+	var err error
+	if mdb != nil {
+		if err = mdb.Disconnect(context.TODO()); err != nil {
+			panic(err)
+		}
+	}
+	if rdb != nil {
+		if err = rdb.Close(); err != nil {
+			panic(err)
+		}
+	}
 }
 
 func GetIndex(opt string) (int, int) {
